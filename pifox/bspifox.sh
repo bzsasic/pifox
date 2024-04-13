@@ -300,7 +300,7 @@ fi
 	Time=$(date +"%R %p")
 	Seconds=$(date +"%S")
 	Day=$(date +"%F")
-    GPIO22=$(gpio -g read 22)	
+   # GPIO22=$(gpio -g read 22)	
 
 if [[ "$foxtimeset" == 1 ]]; then
 	echo "${callsign} ${foxmessage} at ${Time}" >> fox.txt
@@ -312,14 +312,14 @@ if [[ "$foxtimeset" == 0 ]]; then
 	echo "${callsign}>BEACON:${foxmessage}" >> fox_pkt.txt
 fi
 
-    if [ $GPIO22 == 0 ]; then 
-        #chech the GPIO22 as input for signals or alarms, and modify the following text as you wish
-        echo " . Input 22 active!!!" >> fox.txt
-		echo ". Input 22 active!!!" >> fox_pkt.txt
-    fi	
+  #  if [ $GPIO22 == 0 ]; then 
+  #      #chech the GPIO22 as input for signals or alarms, and modify the following text as you wish
+  #      echo " . Input 22 active!!!" >> fox.txt
+#		echo ". Input 22 active!!!" >> fox_pkt.txt
+ #   fi	
 	
-	echo "${Day};${Time}:${Seconds};${callsign};${foxmessage};${GPIO22};" >> Logger.txt
-    cat fox.txt
+#	echo "${Day};${Time}:${Seconds};${callsign};${foxmessage};${GPIO22};" >> Logger.txt
+ #   cat fox.txt
 
 	#the following line is to generate the voice audio file
 
@@ -329,11 +329,11 @@ fi
 
 	#the following line is to generate the packet radio audio file
 
-if [[ "$foxpacket" == 1 ]]; then
-		./pkt2wave fox_pkt.txt -n 1 -r 44100 -o fox_pkt.wav
-fi
+#if [[ "$foxpacket" == 1 ]]; then
+	#	./pkt2wave fox_pkt.txt -n 1 -r 44100 -o fox_pkt.wav
+#fi
 
-gpio -g write 17 1
+#gpio -g write 17 1
 
 
 if [[ "$Vox" == 1 ]]; then
@@ -360,7 +360,7 @@ fi
 
 fi
 
-gpio -g write 17 0
+#gpio -g write 17 0
 rm -f fox.txt
 rm -f fox_pkt.txt
 
